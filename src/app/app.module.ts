@@ -8,6 +8,8 @@ import { FooterComponent } from './footer/footer.component';
 import { DirectivaComponent } from './directiva/directiva.component';
 import { ClienteComponent } from './cliente/cliente.component';
 import { RouterModule, Routes } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
+
 
 const ROUTES: Routes = [
   { path: '', redirectTo: '/cliente', pathMatch: 'full' },
@@ -25,6 +27,7 @@ const ROUTES: Routes = [
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     RouterModule.forRoot(ROUTES)
   ],
   providers: [ClienteService],
