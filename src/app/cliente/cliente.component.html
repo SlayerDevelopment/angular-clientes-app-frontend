@@ -4,6 +4,11 @@
   </div>
   <div class="card-body text-primary">
     <h5 class="card-title">Listado de Clientes</h5>
+    <div class="my-2 text-left">
+      <button class="btn btn-primary rounded" type="button" [routerLink]="['/cliente/formulario']">
+        Registrar Cliente
+      </button>
+    </div>
     <table class="table table-bordered table-striped">
       <thead>
         <tr>
@@ -12,6 +17,7 @@
           <th>apellidos</th>
           <th>email</th>
           <th>creado</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
@@ -21,6 +27,12 @@
           <td>{{cliente.apellidos}}</td>
           <td>{{cliente.email}}</td>
           <td>{{cliente.creado}}</td>
+          <td>
+            <button class="font-weight-bold btn btn-info"
+              [routerLink]="['/cliente/formulario/',cliente.id]">
+              Editar
+            </button>
+          </td>
         </tr>
       </tbody>
     </table>
