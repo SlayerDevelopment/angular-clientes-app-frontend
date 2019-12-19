@@ -9,7 +9,10 @@
         Registrar Cliente
       </button>
     </div>
-    <table class="table table-bordered table-striped">
+    <div *ngIf="clientes?.length == 0" class="alert alert-warning font-weight-bold">
+      No hay registros en la base de datos!!!
+    </div>
+    <table class="table table-bordered table-striped" *ngIf="clientes?.length>0">
       <thead>
         <tr>
           <th>id</th>
@@ -17,7 +20,7 @@
           <th>apellidos</th>
           <th>email</th>
           <th>creado</th>
-          <th></th>
+          <th colspan="2" class="text-center">Opciones</th>
         </tr>
       </thead>
       <tbody>
@@ -28,9 +31,13 @@
           <td>{{cliente.email}}</td>
           <td>{{cliente.creado}}</td>
           <td>
-            <button class="font-weight-bold btn btn-info"
-              [routerLink]="['/cliente/formulario/',cliente.id]">
+            <button class="font-weight-bold btn btn-info" [routerLink]="['/cliente/formulario/',cliente.id]">
               Editar
+            </button>
+          </td>
+          <td>
+            <button type="button" class="font-weight-bold btn btn-danger" (click)="eliminar(cliente)">
+              Eliminar
             </button>
           </td>
         </tr>

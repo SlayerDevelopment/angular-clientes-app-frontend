@@ -33,18 +33,23 @@ export class ClienteComponent implements OnInit {
       text: `¿Seguro desea eliminar al cliente ${cliente.nombres} ${cliente.apellidos}?`,
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonText: 'Yes, delete it!',
-      cancelButtonText: 'No, cancel!',
+      confirmButtonText: 'Si, eliminar!',
+      cancelButtonText: 'No, cancelar!',
       reverseButtons: true
     }).then((result) => {
       if (result.value) {
-        swalWithBootstrapButtons.fire(
-          'Deleted!',
-          'Your file has been deleted.',
-          'success'
-        )
+        this.clienteService.eliminar(cliente.id).subscribe(
+          response => {
+            this.clientes = this.clientes.filter(cli => cli !== cliente);
+            swalWithBootstrapButtons.fire(
+              'Cliente Eliminado!',
+              `Cliente ${cliente.nombres} eliminado con exito`,
+              'success'
+            );
+          }
+        );
       }
-    })
+    });
   }
 
 }
